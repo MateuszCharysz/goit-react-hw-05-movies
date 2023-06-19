@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useEffect } from 'react-router-dom';
 import Home from './home/Home';
 import Movies from './movies/Movies';
 import MovieDetails from './movieDetails/MovieDetails';
@@ -6,6 +6,7 @@ import Cast from './cast/Cast';
 import Reviews from './reviews/Reviews';
 
 export const App = () => {
+useEffect(()=>{},[])//TODO put TMDB API trending search
   return (
     <>
       <nav>
@@ -19,6 +20,7 @@ export const App = () => {
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
+        <Route path="*" element={<Home />} />
       </Routes>
     </>
   );
