@@ -1,12 +1,8 @@
 import axios from 'axios';
 
 const movieApi = axios.create({
-  baseURL: 'https://api.themoviedb.org/3',
+  baseURL: 'https://api.themoviedb.org/3/',
   timeout: 1000,
-  headers: {
-    accept: 'application/json',
-    Authorization: 'Bearer 638157d2144cf1597ea299c77ac36a11',
-  },
 });
 
 export const movieApiLuncher = async url => {
