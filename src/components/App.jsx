@@ -5,7 +5,7 @@ import MovieDetails from './pages/movieDetails/MovieDetails';
 import Cast from './cast/Cast';
 import Reviews from './reviews/Reviews';
 import SharedLayout from './sharedLayout/SharedLayout';
-import { movieApiLuncher } from 'service/api';
+import { movieApiLuncher } from 'service/movieApiLuncher';
 import apiUtils from 'service/apiUtils';
 import React, { useEffect, useState, useCallback } from 'react';
 // import MOVIES from 'service/fakeApi';
@@ -17,6 +17,7 @@ export const App = () => {
   const dataForSave = useCallback(async () => {
     try {
       const answer = await movieApiLuncher(apiUtils.API_TRENDING());
+      console.log(answer);
       setTrendList(answer.data.results);
     } catch (err) {
       console.log(err);
@@ -25,7 +26,7 @@ export const App = () => {
 
   useEffect(() => {
     dataForSave();
-  }, [dataForSave]); //TODO put TMDB API trending search
+  }, [dataForSave]);
   console.log(trendList);
   return (
     <>
@@ -33,11 +34,11 @@ export const App = () => {
         <Route path="/" element={<SharedLayout />}>
           <Route index element={<Home trendingList={trendList} />} />
           <Route path="/movies" element={<Movies />} />
-          <Route path="/movies:movieid" element={<MovieDetails />}>
+          <Route path="/movies/:movieId" element={<MovieDetails />}>
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
-          <Route path="*" element={<Home />} />
+          <Route path="*" element={<Home trendingList={trendList} />} />
         </Route>
       </Routes>
     </>

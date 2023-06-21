@@ -8,7 +8,7 @@ const MovieList = ({ trendingList }) => {
       <ul>
         {trendingList.map(({ id, title, name }) => (
           <li key={id}>
-            <Link to={'/movies:movieid'}>{title !== null ? title : name}</Link>
+            <Link to={`/movies/${id}`}>{title !== null ? title : name}</Link>
           </li>
         ))}
       </ul>
