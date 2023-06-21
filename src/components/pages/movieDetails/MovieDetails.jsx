@@ -33,7 +33,7 @@ const MovieDetails = props => {
       <button type="button">Go back</button>
       {/* <img src='' alt=''/>  */}
       <h2>{MOVIE_ID.original_title}</h2>
-      <p>User score:{MOVIE_ID.vote_average}</p>
+      <p>User score: {MOVIE_ID.vote_average}</p>
       <h3>Overview</h3>
       <p>{MOVIE_ID.overview}</p>
       <h3>Genres</h3>
