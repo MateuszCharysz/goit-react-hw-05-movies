@@ -20,8 +20,8 @@ const Reviews = props => {
   return (
     <ul>
       {revData.length > 0 ? (
-        revData.map(({ author, content }) => (
-          <li>
+        revData.map(({ author, content, id }) => (
+          <li key={id}>
             <h3>{author}</h3>
             <p>{content}</p>
           </li>

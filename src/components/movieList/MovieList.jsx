@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'//TODO define PROPTYPES !!!
 
-const MovieList = ({ trendingList }) => {
+const MovieList = ({ movieList }) => {
   return (
     <>
       <ul>
-        {trendingList.map(({ id, title, name }) => (
+        {movieList.map(({ id, title, name }) => (
           <li key={id}>
             <Link to={`/movies/${id}`}>{title !== null ? title : name}</Link>
           </li>
