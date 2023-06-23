@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import { movieApiLuncher } from 'service/movieApiLuncher';
 import apiUtils from 'service/apiUtils';
 import css from './MovieDetails.module.css';
@@ -8,6 +8,7 @@ import AdditionalInfo from 'components/additionalInfo/AdditionalInfo';
 //import PropTypes from 'prop-types' //TODO uncoment if ready
 
 const MovieDetails = props => {
+  // const location = useLocation()
   const { movieId } = useParams();
   const [movieIdData, setMovieIdData] = useState('');
   const [movieIdDataDetails, setMovieIdDataDetails] = useState({});
@@ -24,7 +25,10 @@ const MovieDetails = props => {
     }
   }, [movieId]);
 
-  // console.log(dataMovieDetails());
+const goBackHandler = () => {
+
+}
+
 
   useEffect(() => {
     if (movieId !== movieIdData) dataMovieDetails();
@@ -37,7 +41,7 @@ const MovieDetails = props => {
     <div className={css.movie}>
       {movieIdData !== '' ? (
         <>
-          <button type="button">Go back</button>
+          <button type="button" onClick={goBackHandler}>Go back</button>
           <div className={css.movie__item}>
             <img
               className={css.movie__img}
