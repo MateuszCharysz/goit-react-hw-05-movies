@@ -9,11 +9,9 @@ import AdditionalInfo from 'components/additionalInfo/AdditionalInfo';
 
 const MovieDetails = props => {
   const location = useLocation();
-  const goBackRefHome = location.state?.from ?? '/'
-  const goBackRefMovies = location.state?.from ?? '/movies';
   const navigate = useNavigate();
-  console.log(location);
-  console.log(goBackRefMovies);
+  // console.log(location);
+  // console.log(location.state?.from?.search);
   const { movieId } = useParams();
   const [movieIdData, setMovieIdData] = useState('');
   const [movieIdDataDetails, setMovieIdDataDetails] = useState({});
@@ -31,11 +29,13 @@ const MovieDetails = props => {
   }, [movieId]);
 
   const goBackHandler = () => {
-    if (goBackRefHome)
+    if (location.state?.from.pathname === '/') {
+      // console.log('home');
       return navigate('/');
-    if (goBackRefMovies)
-      return navigate('/movies');
-    
+    } else {
+      // console.log('movies');
+      return navigate(`/movies${location.state.from.search}`);
+    }
   };
 
   useEffect(() => {

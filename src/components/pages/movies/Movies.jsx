@@ -1,14 +1,17 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect} from 'react';
 import { movieApiLuncher } from 'service/movieApiLuncher';
 import apiUtils from 'service/apiUtils';
 import MovieList from 'components/movieList/MovieList';
+import { useSearchParams } from 'react-router-dom';
 //import PropTypes from 'prop-types'//TODO uncoment if ready
 
 const Movies = props => {
   const [searchList, setSearchList] = useState([]);
-  const [querry, setQuerry] = useState('')
+  const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams);
+  console.log(searchParams.get('querry'));
   // console.log(apiUtils.API_TRENDING());
-  // console.log(movieApiLuncher(apiUtils.API_TRENDING()));
+  // console.log(movieApiLuncher(apiUtils.API_SEARCH(querry)));
   const searchForSave = useCallback(async input => {
     try {
       const answer = await movieApiLuncher(apiUtils.API_SEARCH(input));
@@ -18,16 +21,23 @@ const Movies = props => {
       console.log(err);
     }
   }, []);
-  const submitSearch = e => {
-    e.preventDefault();
-    console.log(e.target);
-    setQuerry(e.target.value)
-  };
+
+  useEffect(() => {
+    if (searchParams.get('querry')?.length > 0)
+      searchForSave(searchParams.get('querry'));
+  }, [searchParams, searchForSave]);
+
   return (
     <div>
-      <form onSubmit={() => submitSearch()}>
-        <input type="text" name={querry} id="" />
-        <button type='submit'>Search</button>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          console.log(e);
+          setSearchParams({ querry: e.target[0].value });
+        }}
+      >
+        <input type="text" name="querry"/>
+        <button type="submit">Search</button>
       </form>
       <MovieList movieList={searchList} />
     </div>
