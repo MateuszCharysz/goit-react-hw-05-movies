@@ -8,13 +8,12 @@ import SharedLayout from './sharedLayout/SharedLayout';
 import { movieApiLuncher } from 'service/movieApiLuncher';
 import apiUtils from 'service/apiUtils';
 import React, { useEffect, useState, useCallback } from 'react';
-// import MOVIES from 'service/fakeApi';
 
 export const App = () => {
   const [trendList, setTrendList] = useState([]);
   // console.log(apiUtils.API_TRENDING());
   // console.log(movieApiLuncher(apiUtils.API_TRENDING()));
-  const dataForSave = useCallback(async () => {
+  const trendForSave = useCallback(async () => {
     try {
       const answer = await movieApiLuncher(apiUtils.API_TRENDING());
       // console.log(answer);
@@ -25,8 +24,8 @@ export const App = () => {
   }, []);
 
   useEffect(() => {
-    dataForSave();
-  }, [dataForSave]);
+    trendForSave();
+  }, [trendForSave]);
   // console.log(trendList);
   return (
     <>

@@ -9,14 +9,10 @@ const AdditionalInfo = () => {
       <h4>Additional Information</h4>
       <ul style={internalBtmBorder}>
         <li>
-          <Link to={'cast'}>
-            Cast
-          </Link>
+          <Link to={'cast'}>Cast</Link>
         </li>
         <li>
-          <Link to={'reviews'}>
-            Reviews
-          </Link>
+          <Link to={'reviews'}>Reviews</Link>
         </li>
       </ul>
       <Outlet />
@@ -27,10 +23,3 @@ const AdditionalInfo = () => {
 // AdditionalInfo.propTypes = {}
 
 export default AdditionalInfo;
-        // <li>
-        //   <Link to={'cast'} state={locationState}>
-        //     Cast
-        //   </Link>
-        // </li>
-        // <li>
-        //   <Link to={'reviews'} state={locationState}></Link>

@@ -13,7 +13,7 @@ const MovieDetails = props => {
   const goBackRefMovies = location.state?.from ?? '/movies';
   const navigate = useNavigate();
   console.log(location);
-  console.log(goBackRefHome);
+  console.log(goBackRefMovies);
   const { movieId } = useParams();
   const [movieIdData, setMovieIdData] = useState('');
   const [movieIdDataDetails, setMovieIdDataDetails] = useState({});

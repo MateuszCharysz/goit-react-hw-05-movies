@@ -1,5 +1,5 @@
 import React from 'react';
-import css from './Home.module.css'
+import css from './Home.module.css';
 // import PropTypes from 'prop-types' //TODO uncoment if ready
 import MovieList from 'components/movieList/MovieList';
 
