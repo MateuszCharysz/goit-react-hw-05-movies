@@ -7,7 +7,7 @@ import css from './Cast.module.css';
 
 const Cast = props => {
   const { movieId } = useParams();
-
+ 
   const [castData, setCastData] = useState([]);
   const creditsData = useCallback(async () => {
     try {

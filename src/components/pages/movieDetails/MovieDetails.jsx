@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useParams} from 'react-router-dom';
+import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { movieApiLuncher } from 'service/movieApiLuncher';
 import apiUtils from 'service/apiUtils';
 import css from './MovieDetails.module.css';
@@ -8,7 +8,12 @@ import AdditionalInfo from 'components/additionalInfo/AdditionalInfo';
 //import PropTypes from 'prop-types' //TODO uncoment if ready
 
 const MovieDetails = props => {
-  // const location = useLocation()
+  const location = useLocation();
+  const goBackRefHome = location.state?.from ?? '/'
+  const goBackRefMovies = location.state?.from ?? '/movies';
+  const navigate = useNavigate();
+  console.log(location);
+  console.log(goBackRefHome);
   const { movieId } = useParams();
   const [movieIdData, setMovieIdData] = useState('');
   const [movieIdDataDetails, setMovieIdDataDetails] = useState({});
@@ -17,7 +22,7 @@ const MovieDetails = props => {
   const dataMovieDetails = useCallback(async () => {
     try {
       const answer = await movieApiLuncher(apiUtils.API_ID(movieId));
-      console.log(answer);
+      // console.log(answer);
       setMovieIdData(answer.data.id);
       setMovieIdDataDetails(answer.data);
     } catch (err) {
@@ -25,23 +30,28 @@ const MovieDetails = props => {
     }
   }, [movieId]);
 
-const goBackHandler = () => {
-
-}
-
+  const goBackHandler = () => {
+    if (goBackRefHome)
+      return navigate('/');
+    if (goBackRefMovies)
+      return navigate('/movies');
+    
+  };
 
   useEffect(() => {
     if (movieId !== movieIdData) dataMovieDetails();
   }, [dataMovieDetails, movieId, movieIdData]);
-  console.log(movieIdData);
-  console.log(movieIdDataDetails);
+  // console.log(movieIdData);
+  // console.log(movieIdDataDetails);
 
   return (
     // TODO make button component, poster Path to check, genres with space
     <div className={css.movie}>
       {movieIdData !== '' ? (
         <>
-          <button type="button" onClick={goBackHandler}>Go back</button>
+          <button type="button" onClick={() => goBackHandler()}>
+            Go back
+          </button>
           <div className={css.movie__item}>
             <img
               className={css.movie__img}
@@ -59,10 +69,10 @@ const goBackHandler = () => {
               </p>
             </div>
           </div>
-          <AdditionalInfo />
+          <AdditionalInfo state={{ from: location }} />
         </>
       ) : (
-        <p>smth went wrong</p>
+        <p>Loding</p>
       )}
     </div>
   );

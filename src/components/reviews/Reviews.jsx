@@ -6,6 +6,7 @@ import apiUtils from 'service/apiUtils';
 
 const Reviews = props => {
   const { movieId } = useParams();
+  // const location = useLocation();
   const [revData, setRevData] = useState([]);
   const reviewsData = useCallback(async () => {
     try {

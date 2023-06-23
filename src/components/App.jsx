@@ -17,7 +17,7 @@ export const App = () => {
   const dataForSave = useCallback(async () => {
     try {
       const answer = await movieApiLuncher(apiUtils.API_TRENDING());
-      console.log(answer);
+      // console.log(answer);
       setTrendList(answer.data.results);
     } catch (err) {
       console.log(err);
@@ -27,7 +27,7 @@ export const App = () => {
   useEffect(() => {
     dataForSave();
   }, [dataForSave]);
-  console.log(trendList);
+  // console.log(trendList);
   return (
     <>
       <Routes>
