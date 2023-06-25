@@ -10,8 +10,8 @@ import AdditionalInfo from 'components/additionalInfo/AdditionalInfo';
 const MovieDetails = props => {
   const location = useLocation();
   const navigate = useNavigate();
-  // console.log(location);
-  // console.log(location.state?.from?.search);
+  console.log(location);
+  console.log(location.state?.from?.search);
   const { movieId } = useParams();
   const [movieIdData, setMovieIdData] = useState('');
   const [movieIdDataDetails, setMovieIdDataDetails] = useState({});
@@ -28,7 +28,7 @@ const MovieDetails = props => {
     }
   }, [movieId]);
 
-  const goBackHandler = () => {
+  const goBackHandler = () => {  console.log(location.state?.from);
     if (location.state?.from.pathname === '/') {
       // console.log('home');
       return navigate('/');

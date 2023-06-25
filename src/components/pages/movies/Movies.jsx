@@ -3,6 +3,7 @@ import { movieApiLuncher } from 'service/movieApiLuncher';
 import apiUtils from 'service/apiUtils';
 import MovieList from 'components/movieList/MovieList';
 import { useSearchParams } from 'react-router-dom';
+import css from './Movies.module.css';
 //import PropTypes from 'prop-types'//TODO uncoment if ready
 
 const Movies = props => {
@@ -28,7 +29,7 @@ const Movies = props => {
   }, [searchParams, searchForSave]);
 
   return (
-    <div>
+    <div className={css.movies}>
       <form
         onSubmit={e => {
           e.preventDefault();
