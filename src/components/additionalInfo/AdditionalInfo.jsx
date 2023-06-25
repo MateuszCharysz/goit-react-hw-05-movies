@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { internalBtmBorder } from 'components/sharedLayout/SharedLayout';
-// import PropTypes from 'prop-types'
 
-const AdditionalInfo = ({state}) => {
+const AdditionalInfo = () => {
   return (
     <>
       <h4>Additional Information</h4>
@@ -19,7 +18,5 @@ const AdditionalInfo = ({state}) => {
     </>
   );
 };
-
-// AdditionalInfo.propTypes = {}
 
 export default AdditionalInfo;

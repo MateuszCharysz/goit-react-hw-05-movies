@@ -7,23 +7,17 @@ import css from './MovieDetails.module.css';
 import AdditionalInfo from 'components/additionalInfo/AdditionalInfo';
 //import PropTypes from 'prop-types' //TODO uncoment if ready
 
-const MovieDetails = props => {
+const MovieDetails = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const locationRef = useRef(location)
-  console.log(location);
-  console.log(location.state?.from?.search);
-  console.log(locationRef);
-  console.log(locationRef.current.state.from);
+  const locationRef = useRef(location);
   const { movieId } = useParams();
   const [movieIdData, setMovieIdData] = useState('');
   const [movieIdDataDetails, setMovieIdDataDetails] = useState({});
-  //   console.log(movieId);
-  // console.log(movieApiLuncher(apiUtils.API_ID(movieId)));
+
   const dataMovieDetails = useCallback(async () => {
     try {
       const answer = await movieApiLuncher(apiUtils.API_ID(movieId));
-      // console.log(answer);
       setMovieIdData(answer.data.id);
       setMovieIdDataDetails(answer.data);
     } catch (err) {
@@ -31,7 +25,8 @@ const MovieDetails = props => {
     }
   }, [movieId]);
 
-  const goBackHandler = () => {  console.log(locationRef);
+  const goBackHandler = () => {
+    console.log(locationRef);
     if (locationRef.current.state?.from.pathname === '/') {
       console.log('home');
       return navigate('/');
@@ -44,11 +39,8 @@ const MovieDetails = props => {
   useEffect(() => {
     if (movieId !== movieIdData) dataMovieDetails();
   }, [dataMovieDetails, movieId, movieIdData]);
-  // console.log(movieIdData);
-  // console.log(movieIdDataDetails);
 
   return (
-    // TODO make button component, poster Path to check, genres with space
     <div className={css.movie}>
       {movieIdData !== '' ? (
         <>
@@ -68,7 +60,7 @@ const MovieDetails = props => {
               <p>{movieIdDataDetails.overview}</p>
               <h3>Genres</h3>
               <p>
-                {movieIdDataDetails.genres.map(({ id, name }) => `${name} `)}
+                {movieIdDataDetails.genres.map(({ _, name }) => `${name} `)}
               </p>
             </div>
           </div>
@@ -80,7 +72,5 @@ const MovieDetails = props => {
     </div>
   );
 };
-
-//MovieDetails.propTypes = {}//TODO define proptypes
 
 export default MovieDetails;

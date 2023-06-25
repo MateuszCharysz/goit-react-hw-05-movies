@@ -1,10 +1,9 @@
 import React from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 import css from './SharedLayout.module.css';
-// import PropTypes from 'prop-types'
 export const internalBtmBorder = { borderBottom: '1px solid grey', paddingBottom: 10 }
 
-const SharedLayout = props => {
+const SharedLayout = () => {
   return (
     <>
       <header className={css.header}>
@@ -31,7 +30,5 @@ const SharedLayout = props => {
     </>
   );
 };
-
-// SharedLayout.propTypes = {}
 
 export default SharedLayout;

@@ -11,12 +11,9 @@ import React, { useEffect, useState, useCallback } from 'react';
 
 export const App = () => {
   const [trendList, setTrendList] = useState([]);
-  // console.log(apiUtils.API_TRENDING());
-  // console.log(movieApiLuncher(apiUtils.API_TRENDING()));
   const trendForSave = useCallback(async () => {
     try {
       const answer = await movieApiLuncher(apiUtils.API_TRENDING());
-      // console.log(answer);
       setTrendList(answer.data.results);
     } catch (err) {
       console.log(err);
@@ -26,7 +23,7 @@ export const App = () => {
   useEffect(() => {
     trendForSave();
   }, [trendForSave]);
-  // console.log(trendList);
+
   return (
     <>
       <Routes>

@@ -2,12 +2,11 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { movieApiLuncher } from 'service/movieApiLuncher';
 import apiUtils from 'service/apiUtils';
-//import PropTypes from 'prop-types'//TODO uncoment if ready
 
-const Reviews = props => {
+const Reviews = () => {
   const { movieId } = useParams();
-  // const location = useLocation();
   const [revData, setRevData] = useState([]);
+
   const reviewsData = useCallback(async () => {
     try {
       const answer = await movieApiLuncher(apiUtils.API_REVIEWS(movieId));
@@ -16,8 +15,9 @@ const Reviews = props => {
       console.log(err);
     }
   }, [movieId]);
+
   useEffect(() => reviewsData, [reviewsData]);
-  console.log(revData);
+
   return (
     <ul>
       {revData.length > 0 ? (
@@ -34,14 +34,5 @@ const Reviews = props => {
   );
 };
 
-//Reviews.propTypes = {}//TODO define proptypes
-
 export default Reviews;
 
-// try {
-//   const answer = await movieApiLuncher(apiUtils.API_ID(movieId));
-//   setMovieIdData(answer.data.id);
-//   setMovieIdDataDetails(answer.data);
-// } catch (err) {
-//   console.log(err);
-// }

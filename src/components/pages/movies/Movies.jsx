@@ -4,19 +4,14 @@ import apiUtils from 'service/apiUtils';
 import MovieList from 'components/movieList/MovieList';
 import { useSearchParams } from 'react-router-dom';
 import css from './Movies.module.css';
-//import PropTypes from 'prop-types'//TODO uncoment if ready
 
-const Movies = props => {
+const Movies = () => {
   const [searchList, setSearchList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams);
-  console.log(searchParams.get('querry'));
-  // console.log(apiUtils.API_TRENDING());
-  // console.log(movieApiLuncher(apiUtils.API_SEARCH(querry)));
+
   const searchForSave = useCallback(async input => {
     try {
       const answer = await movieApiLuncher(apiUtils.API_SEARCH(input));
-      // console.log(answer);
       setSearchList(answer.data.results);
     } catch (err) {
       console.log(err);
@@ -44,7 +39,5 @@ const Movies = props => {
     </div>
   );
 };
-
-//Movies.propTypes = {}//TODO define proptypes
 
 export default Movies;
