@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Outlet, Navigate } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { internalBtmBorder } from 'components/sharedLayout/SharedLayout';
 // import PropTypes from 'prop-types'
 

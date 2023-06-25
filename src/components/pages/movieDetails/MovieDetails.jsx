@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import { movieApiLuncher } from 'service/movieApiLuncher';
 import apiUtils from 'service/apiUtils';
@@ -10,8 +10,11 @@ import AdditionalInfo from 'components/additionalInfo/AdditionalInfo';
 const MovieDetails = props => {
   const location = useLocation();
   const navigate = useNavigate();
+  const locationRef = useRef(location)
   console.log(location);
   console.log(location.state?.from?.search);
+  console.log(locationRef);
+  console.log(locationRef.current.state.from);
   const { movieId } = useParams();
   const [movieIdData, setMovieIdData] = useState('');
   const [movieIdDataDetails, setMovieIdDataDetails] = useState({});
@@ -28,13 +31,13 @@ const MovieDetails = props => {
     }
   }, [movieId]);
 
-  const goBackHandler = () => {  console.log(location.state?.from);
-    if (location.state?.from.pathname === '/') {
-      // console.log('home');
+  const goBackHandler = () => {  console.log(locationRef);
+    if (locationRef.current.state?.from.pathname === '/') {
+      console.log('home');
       return navigate('/');
     } else {
-      // console.log('movies');
-      return navigate(`/movies${location.state.from.search}`);
+      console.log('movies');
+      return navigate(`/movies${locationRef.current.state.from?.search}`);
     }
   };
 
@@ -69,7 +72,7 @@ const MovieDetails = props => {
               </p>
             </div>
           </div>
-          <AdditionalInfo state={{ from: location }} />
+          <AdditionalInfo />
         </>
       ) : (
         <p>Loding</p>
