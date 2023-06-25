@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Outlet, NavLink } from 'react-router-dom';
 import css from './SharedLayout.module.css';
-export const internalBtmBorder = { borderBottom: '1px solid grey', paddingBottom: 10 }
+export const internalBtmBorder = {
+  borderBottom: '1px solid grey',
+  paddingBottom: 10,
+};
 
 const SharedLayout = () => {
   return (
@@ -26,7 +29,9 @@ const SharedLayout = () => {
           </NavLink>
         </nav>
       </header>
-      <Outlet />
+      <Suspense fallback={<h2>Lazy loading in action</h2>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import MovieList from 'components/movieList/MovieList';
 
 const Home = ({ trendingList }) => {
-  console.log(trendingList);
   return (
     <div className={css.home}>
       <h2>Trending today</h2>

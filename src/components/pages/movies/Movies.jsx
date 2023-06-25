@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect} from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { movieApiLuncher } from 'service/movieApiLuncher';
 import apiUtils from 'service/apiUtils';
 import MovieList from 'components/movieList/MovieList';
@@ -32,7 +32,7 @@ const Movies = () => {
           setSearchParams({ querry: e.target[0].value });
         }}
       >
-        <input type="text" name="querry"/>
+        <input type="text" name="querry" />
         <button type="submit">Search</button>
       </form>
       <MovieList movieList={searchList} />

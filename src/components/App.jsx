@@ -1,15 +1,16 @@
 import { Routes, Route } from 'react-router-dom';
-import Home from './pages/home/Home';
-import Movies from './pages/movies/Movies';
-import MovieDetails from './pages/movieDetails/MovieDetails';
-import Cast from './cast/Cast';
-import Reviews from './reviews/Reviews';
 import SharedLayout from './sharedLayout/SharedLayout';
 import { movieApiLuncher } from 'service/movieApiLuncher';
 import apiUtils from 'service/apiUtils';
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, lazy } from 'react';
 
-export const App = () => {
+const Home = lazy(() => import('./pages/home/Home'));
+const Movies = lazy(() => import('./pages/movies/Movies'));
+const MovieDetails = lazy(() => import('./pages/movieDetails/MovieDetails'));
+const Cast = lazy(() => import('./cast/Cast'));
+const Reviews = lazy(() => import('./reviews/Reviews'));
+
+const App = () => {
   const [trendList, setTrendList] = useState([]);
   const trendForSave = useCallback(async () => {
     try {
@@ -40,3 +41,5 @@ export const App = () => {
     </>
   );
 };
+
+export default App;
